@@ -1,0 +1,13 @@
+test-results/
+tmp/
+routes/
+conf/app.conf
+node_modules/
+conf/app.conf
+log/
+assets/upload.log
+bin/persimmon/
+assets/upload.log
+assets/qiniu.json
+vendor
+glide.lock

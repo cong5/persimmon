@@ -1,0 +1,26 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+<div class="content-main">
+    <article class="post clearfix" itemscope itemtype="http://schema.org/Article" style="border-bottom:0;">
+        <header class="post-header">
+            <h1 class="entry-title links-title">我的邻居</h1>
+            <div class="clear"></div>
+        </header>
+        <div class="post-content markdown-body" itemprop="articleBody">
+            <div class="links">
+                {{range .links}}
+                <a href="{{ .Url }}" title="{{ .Name }}" target="_blank" class="friends">
+                    {{ if isEmpty .Logo}} <img src="/public/images/visitor.png" alt=""> {{else}} <img src="{{ .Logo }}" alt=""> {{end}} {{ .Name }}
+                </a>
+                {{end}}
+            </div>
+            <div class="clear"></div>
+        </div>
+        <footer class="post-footer" itemprop="keywords">
+            <div class="clear"></div>
+        </footer>
+    </article>
+</div>
+
+{{template "footer.html" .}}

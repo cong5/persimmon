@@ -1,0 +1,28 @@
+{{range .posts}}
+<article class="post clearfix" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="entry-title"><a href="{{url "Home.Post" .Slug }}" rel="bookmark">{{ .Title }}</a></h1>
+        <div class="post-date">
+            <time class="fa fa-calendar date" datetime="{{date "2006-01-02 15:04:05" .CreatedAt }}" itemprop="datePublished"> {{date "02 Jan , 2006" .CreatedAt }}
+            </time>
+            <span class="views fa fa-eye" itemprop="views"> {{ .Views }} views</span>
+        </div>
+        <div class="clear"></div>
+    </header>
+    <div class="post-content post-desc" itemprop="articleBody">
+        {{if .Thumb }}
+            <p><img class="post-thumb" src="{{ .Thumb }}" alt=""/></p>
+        {{end}}
+        <p>{{ .Content }}...</p>
+        <div class="clear"></div>
+    </div>
+    <footer class="post-footer" itemprop="keywords">
+    {{range .Tags}}
+        <li> <i class="fa fa-tag"></i> <a href="/tag/{{ .Slug }}" rel="tag">{{ .Name }}</a>&nbsp;&nbsp; </li>
+    {{end}}
+        <div class="clear"></div>
+    </footer>
+</article>
+{{end}}
+<!--page nav-->
+{{template "home/component/page.html" .}}

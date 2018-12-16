@@ -1,0 +1,123 @@
+# Routes Config
+#
+# This file defines all application routes (Higher priority routes first)
+#
+
+module:testrunner
+# module:jobs
+
+GET     /                                           Home.Index
+GET     /page/:page                                 Home.Index
+
+# xmlrpc
+GET     /xmlrpc                                     XmlRpcServer.ShowMessage
+POST    /xmlrpc                                     XmlRpcServer.Index
+
+# categories
+GET     /categories/:slug                           Home.Categories
+GET     /categories/:slug/:page                     Home.Categories
+GET     /debug                                      Home.Debug
+
+# comment
+GET     /comment/:postId/:page                      HomeComment.List
+POST    /comment                                    HomeComment.Post
+
+# post & tags
+GET     /post/:slug                                 Home.Post
+GET     /tag/:name                                  Home.Tag
+GET     /tag/:name/:page                            Home.Tag
+
+# other
+GET     /friends                                    Home.Friends
+GET     /feed                                       Home.Feed
+GET     /sitemap/:platform                          Home.SiteMap
+
+# Admin
+GET     /backend                                    Dashboard.Index
+GET     /backend/meta                               Dashboard.MetaCount
+POST    /backend/login                              Auth.Login
+GET     /backend/logout                             Auth.Logout
+
+# categories
+GET     /backend/categories                         Category.Index
+GET     /backend/categories/:id                     Category.Show
+POST    /backend/categories/store                   Category.Store
+POST    /backend/categories/update                  Category.Update
+POST    /backend/categories/destroy                 Category.Destroy
+
+# posts
+GET     /backend/posts                              Posts.Index
+GET     /backend/posts/:id                          Posts.Show
+POST    /backend/posts/store                        Posts.Store
+POST    /backend/posts/update                       Posts.Update
+POST    /backend/posts/destroy                      Posts.Destroy
+
+# trash
+GET     /backend/posts-trash                        Trash.Index
+POST    /backend/posts-trash/update                 Trash.Update
+POST    /backend/posts-trash/destroy                Trash.Destroy
+
+# tags
+GET     /backend/tags                               Tags.Index
+GET     /backend/tags/:id                           Tags.Show
+POST    /backend/tags/store                         Tags.Store
+POST    /backend/tags/update                        Tags.Update
+POST    /backend/tags/destroy                       Tags.Destroy
+
+# options
+GET     /backend/options                            Option.Index
+GET     /backend/options/:id                        Option.Show
+POST    /backend/options/store                      Option.Store
+POST    /backend/options/update                     Option.Update
+POST    /backend/options/destroy                    Option.Destroy
+
+# links
+GET     /backend/links                              Link.Index
+GET     /backend/links/:id                          Link.Show
+POST    /backend/links/store                        Link.Store
+POST    /backend/links/update                       Link.Update
+POST    /backend/links/destroy                      Link.Destroy
+
+# comments
+GET     /backend/comments                           Comment.Index
+GET     /backend/comments/:id                       Comment.Show
+POST    /backend/comments/store                     Comment.Store
+POST    /backend/comments/update                    Comment.Update
+POST    /backend/comments/destroy                   Comment.Destroy
+POST    /backend/comments/spam                      Comment.Spam
+
+# navigation
+GET     /backend/navigation                         Navigation.Index
+POST    /backend/navigation/update                  Navigation.Update
+
+# settings
+GET     /backend/settings                           Settings.Index
+POST    /backend/settings/update                    Settings.Update
+
+# user
+GET     /backend/user                               User.Index
+POST    /backend/user/update                        User.Update
+
+# uploads
+POST    /backend/files/uploads                      File.Uploads
+POST    /backend/files/file                         File.UploadsFile
+
+# utils
+GET     /backend/utils/fanyi/:words                 Utils.Translate
+
+# Ignore favicon requests
+GET     /favicon.ico                                Static.Serve("public/favicon.ico")
+
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/*filepath                           Static.Serve("public")
+
+# Catch all, this will route any request into the controller path
+#
+#                    **** WARNING ****
+# Enabling this exposes any controller and function to the web.
+# ** This is a serious security issue if used online **
+#
+# For rapid development uncomment the following to add new controller.action endpoints
+# without having to add them to the routes table.
+# *       /:controller/:action                    :controller.:action

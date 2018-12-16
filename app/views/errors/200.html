@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Application error</title>
+	</head>
+	<body>
+    {{with .Error}}
+    <h1>
+        {{.Title}}
+    </h1>
+    <p>
+        {{.Description}}
+    </p>
+    {{end}}
+	</body>
+</html>
